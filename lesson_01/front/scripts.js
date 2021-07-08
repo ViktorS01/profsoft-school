@@ -36,10 +36,51 @@ async function blockUser (idUser){
         method: 'DELETE'
     });
 
-    const tbody = document.getElementById('tbody');
-    tbody.innerHTML = '';
-
+    clearData();
     getUsers();
 }
 
+const clearData = () => {
+    const tbody = document.getElementById('tbody');
+    tbody.innerHTML = '';
+}
+
+const closeModal = () => {
+    document.getElementById('myModal').style.display = 'none';
+    document.getElementById('email').value = '';
+    document.getElementById('name').value = '';
+    document.getElementById('role').value = '';
+}
+
+
+const addEventListeners = () => {
+    document.querySelector('.openModalButton').addEventListener('click', () => {
+        document.getElementById('myModal').style.display = 'block';
+    });
+    document.querySelector('.close').addEventListener('click', () => {
+        closeModal();
+    });
+}
+
+async function add(){
+    const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        role: document.getElementById('role').value
+    };
+    const response = await fetch('http://localhost:3000', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    if (response.ok){
+        clearData();
+        closeModal();
+        getUsers();
+    }
+}
+
+addEventListeners();
 getUsers();

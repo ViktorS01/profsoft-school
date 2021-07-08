@@ -14,6 +14,7 @@
 <body>
 
 <section>
+    <p class="openModalButton" id="openModalButton">+ Добавить нового пользователя</p>
     <table>
         <thead>
         <tr>
@@ -33,6 +34,21 @@
 <!--            <td>Заблокировать</td>-->
 <!--        </tr>-->
         </tbody>
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="inputs">
+                    <input type="text" placeholder="Email" id="email">
+                    <input type="text" placeholder="Фио" id="name">
+                    <input type="text" placeholder="Роль в системе" id="role">
+                </div>
+                <div class="blockButton" onclick="add()"><p>Сохранить</p></div>
+
+            </div>
+
+        </div>
     </table>
 </section>
 
