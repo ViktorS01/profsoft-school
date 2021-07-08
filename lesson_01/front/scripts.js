@@ -22,13 +22,24 @@ async function getUsers (){
                 roleElement.innerText = role;
                 statusElement.innerText = status === 1 ? 'Активен' : 'Заблокирован';
                 actionElement.addEventListener('click', () => {
-
+                    blockUser(id);
                 });
                 actionElement.innerHTML = status === 1 ? `<div class="blockButton"><p>Блокировать</p></div>` :
                     `<div class="unblockButton"><p>Восстановить</p></div>`;
             });
         });
     }
+}
+
+async function blockUser (idUser){
+    const response = await fetch(`http://localhost:3000/${idUser}`, {
+        method: 'DELETE'
+    });
+
+    const tbody = document.getElementById('tbody');
+    tbody.innerHTML = '';
+
+    getUsers();
 }
 
 getUsers();
