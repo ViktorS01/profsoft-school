@@ -13,9 +13,9 @@ async function fillData() {
                 document.querySelector(".mainPage").innerHTML +=
                         `<div class="wrapperPost" id="post_${id}">
                             <div class="mainPage_post">
-                                <img src="./assets/user.svg" alt="User">
+                                <img class="userImg" src="./assets/user.svg" alt="User">
                                 <div class="post-content">
-                                    <p class="idUser">User ID: ${userId}</p>
+                                    <p class="idUser">User ID: ${userId}<img class="closeButton" src="./assets/close.svg" alt="Close"></p>
                                     <p class="title">${title}</p>
                                     <p class="completeButton">Читать дальше</p>
                                     <p class="infoPost">${body}</p>
@@ -43,6 +43,13 @@ const addEventListeners = () => {
             event.target.style.display = "none";
         })
     })
+
+    document.querySelectorAll(".closeButton").forEach(elem => {
+        elem.addEventListener("click", event => {
+            deletePost(event.target.parentNode.parentNode.parentNode.id);
+        })
+    })
+
 }
 
 const checkInfoPost = async (event) => {
@@ -69,8 +76,18 @@ const checkCommentPost = async (idUser) => {
                     </div>`;
             })
         })
+
+        await fillData();
     }
-    fillData();
+}
+
+const deletePost = async (idPost) => {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${idPost}`, {
+        method: "DELETE"
+    })
+    if (response.ok) {
+        await fillData()
+    }
 }
 
 fillData();

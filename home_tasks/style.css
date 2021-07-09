@@ -9,7 +9,7 @@
     background-color: #181818;
 }
 
-.mainPage_post img {
+.userImg{
     height: 50px;
     width: 50px;
 
@@ -110,4 +110,15 @@
     line-height: 16px;
 
     color: #FFFFFF;
+}
+
+.closeButton{
+    padding-left: 10px;
+
+    width: 10px;
+    height: 10px;
+}
+
+.closeButton:hover{
+    cursor: pointer;
 }
