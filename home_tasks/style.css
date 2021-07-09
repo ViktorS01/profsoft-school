@@ -49,6 +49,10 @@
     display: none;
 }
 
+.completeButton:hover{
+    cursor: pointer;
+}
+
 .completeButton{
     font-size: 14px;
     line-height: 16px;
@@ -62,4 +66,48 @@
     line-height: 16px;
 
     color: #3EA6FF;
+}
+
+.checkComment:hover{
+    cursor: pointer;
+}
+
+.commentsPost{
+    display: flex;
+
+    margin-left: 85px;
+    margin-bottom: 20px;
+}
+
+.commentsPost img{
+    height: 50px;
+    width: 50px;
+}
+
+.comment-content{
+    margin-left: 20px;
+    padding-top: 2px;
+}
+
+.name{
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: bold;
+
+    color: #FFFFFF;
+}
+
+.email{
+    font-size: 14px;
+    line-height: 16px;
+    margin-left: 10px;
+
+    color: #8B9DA3;
+}
+
+.infoComents{
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #FFFFFF;
 }
