@@ -22,6 +22,7 @@ async function fillData() {
                                     <p class="checkComment">Показать ответ</p>
                                 </div>
                             </div>
+                            <div class="comments"></div>
                         </div>`;
             })
             addEventListeners();
@@ -39,23 +40,25 @@ const addEventListeners = () => {
     document.querySelectorAll(".checkComment").forEach(elem => {
         elem.addEventListener("click", event => {
             checkCommentPost(event.target.parentNode.parentNode.parentNode.id);
+            event.target.style.display = "none";
         })
     })
 }
 
 const checkInfoPost = async (event) => {
-    event.path[0].style.display = "none";
-    event.path[1].children[3].style.display = "block";
+    event.target.style.display = "none";
+    event.target.nextElementSibling.style.display = "block";
 }
 
 const checkCommentPost = async (idUser) => {
+
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${idUser.split("_")[1]}/comments`)
     if (response.ok) {
         response.json().then(data => {
             data.forEach(post => {
                 const {postId, id, name, email, body} = post;
 
-                document.querySelector(`#${idUser}`).innerHTML +=
+                document.querySelector(`#${idUser}`).children[1].innerHTML +=
                     `<div class="commentsPost">
                         <img src="./assets/user.svg" alt="User">
                         <div class="comment-content">
