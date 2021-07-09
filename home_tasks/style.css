@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+.mainPage{
+    background-color: #181818;
+}
+
+.mainPage_post img {
+    height: 50px;
+    width: 50px;
+
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.mainPage_post{
+    display: flex;
+
+    background-color: #181818;
+    margin-bottom: 20px;
+}
+
+.post-content{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.post-content p{
+    margin-bottom: 5px;
+}
+
+.idUser{
+    font-weight: bold;
+    color: white;
+}
+
+.title{
+    color: white;
+}
+
+.infoPost{
+    color: white;
+    font-size: 11px;
+
+    display: none;
+}
+
+.completeButton{
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #8B9DA3;
+}
+
+.checkComment{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #3EA6FF;
+}
