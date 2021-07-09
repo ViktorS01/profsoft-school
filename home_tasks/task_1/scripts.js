@@ -13,9 +13,9 @@ async function fillData() {
                 document.querySelector(".mainPage").innerHTML +=
                         `<div class="wrapperPost" id="post_${id}">
                             <div class="mainPage_post">
-                                <img class="userImg" src="./assets/user.svg" alt="User">
+                                <img class="userImg" src="assets/user.svg" alt="User">
                                 <div class="post-content">
-                                    <p class="idUser">User ID: ${userId}<img class="closeButton" src="./assets/close.svg" alt="Close"></p>
+                                    <p class="idUser">User ID: ${userId}<img class="closeButton" src="assets/close.svg" alt="Close"></p>
                                     <p class="title">${title}</p>
                                     <p class="completeButton">Читать дальше</p>
                                     <p class="infoPost">${body}</p>
@@ -67,7 +67,7 @@ const checkCommentPost = async (idUser) => {
 
                 document.querySelector(`#${idUser}`).children[1].innerHTML +=
                     `<div class="commentsPost">
-                        <img src="./assets/user.svg" alt="User">
+                        <img src="assets/user.svg" alt="User">
                         <div class="comment-content">
                             <span class="name">${name}</span>
                             <span class="email">${email}</span>
