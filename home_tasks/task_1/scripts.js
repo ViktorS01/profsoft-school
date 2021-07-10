@@ -1,4 +1,7 @@
 async function getDataPost() {
+    const mainPage = document.querySelector('.mainPage');
+    mainPage.innerHTML = '';
+
     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
     if (response.ok) {
         return response.json();
@@ -12,6 +15,7 @@ async function fillData() {
 
                 document.querySelector(".mainPage").innerHTML +=
                         `<div class="wrapperPost" id="post_${id}">
+                            <p class="openModalButton" id="openModalButton">+ Добавить новый пост</p>
                             <div class="mainPage_post">
                                 <img class="userImg" src="assets/user.svg" alt="User">
                                 <div class="post-content">
@@ -46,10 +50,19 @@ const addEventListeners = () => {
 
     document.querySelectorAll(".closeButton").forEach(elem => {
         elem.addEventListener("click", event => {
-            deletePost(event.target.parentNode.parentNode.parentNode.id);
+            deletePost(event.target.parentNode.parentNode.parentNode.parentNode.id);
         })
     })
 
+    document.querySelectorAll(".openModalButton").forEach(elem => {
+        elem.addEventListener("click", () => {
+            document.getElementById('myModal').style.display = 'block';
+        })
+    })
+
+    document.querySelector('.close').addEventListener('click', () => {
+        closeModal()
+    })
 }
 
 const checkInfoPost = async (event) => {
@@ -65,7 +78,7 @@ const checkCommentPost = async (idUser) => {
             data.forEach(post => {
                 const {postId, id, name, email, body} = post;
 
-                document.querySelector(`#${idUser}`).children[1].innerHTML +=
+                document.querySelector(`#${idUser}`).children[2].innerHTML +=
                     `<div class="commentsPost">
                         <img src="assets/user.svg" alt="User">
                         <div class="comment-content">
@@ -77,17 +90,42 @@ const checkCommentPost = async (idUser) => {
             })
         })
 
-        await fillData();
     }
 }
 
 const deletePost = async (idPost) => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${idPost}`, {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${idPost.split("_"[1])}`, {
         method: "DELETE"
     })
     if (response.ok) {
-        await fillData()
+        await fillData();
     }
+}
+
+async function add(){
+    const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        role: document.getElementById('role').value
+    }
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    if (response.ok){
+        closeModal()
+        fillData()
+    }
+}
+
+const closeModal = () => {
+    document.getElementById('myModal').style.display = 'none'
+    document.getElementById('email').value = ''
+    document.getElementById('name').value = ''
+    document.getElementById('role').value = ''
 }
 
 fillData();

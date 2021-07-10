@@ -13,24 +13,41 @@
 </head>
 <body>
 <div class="mainPage">
-<!--    <div class="mainPage_post">-->
-<!--        <img class="userImg" src="./assets/user.svg" alt="User">-->
-<!--        <div class="post-content">-->
-<!--            <p class="idUser">User ID: 1 <img class="closeButton" src="./assets/close.svg" alt="Close"></p>-->
-<!--            <p class="title">dfgdgdfgh</p>-->
-<!--            <p class="completeButton">Читать дальше</p>-->
-<!--            <p class="infoPost">dhdfjghdjhgjkdfjk</p>-->
-<!--            <p class="checkComment">Показать ответ</p>-->
+<!--    <div class="wrapperPost" id="post_${id}">-->
+<!--        <p class="openModalButton" id="openModalButton">+ Добавить новый пост</p>-->
+<!--        <div class="mainPage_post">-->
+<!--            <img class="userImg" src="./assets/user.svg" alt="User">-->
+<!--            <div class="post-content">-->
+<!--                <p class="idUser">User ID: 1 <img class="closeButton" src="./assets/close.svg" alt="Close"></p>-->
+<!--                <p class="title">dfgdgdfgh</p>-->
+<!--                <p class="completeButton">Читать дальше</p>-->
+<!--                <p class="infoPost">dhdfjghdjhgjkdfjk</p>-->
+<!--                <p class="checkComment">Показать ответ</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="commentsPost">-->
+<!--            <img src="./assets/user.svg" alt="User">-->
+<!--            <div class="comment-content">-->
+<!--                <span class="name">Ivan</span>-->
+<!--                <span class="email">Ivan@mail.ru</span>-->
+<!--                <p class="infoComents">Крутяк!</p>-->
+<!--            </div>-->
 <!--        </div>-->
 <!--    </div>-->
-<!--    <div class="commentsPost">-->
-<!--        <img src="./assets/user.svg" alt="User">-->
-<!--        <div class="comment-content">-->
-<!--            <span class="name">Ivan</span>-->
-<!--            <span class="email">Ivan@mail.ru</span>-->
-<!--            <p class="infoComents">Крутяк!</p>-->
-<!--        </div>-->
-<!--    </div>-->
+</div>
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="inputs">
+            <input type="text" placeholder="Ваш ID:" id="email">
+            <input type="text" placeholder="Заголовок" id="name">
+            <input type="text" placeholder="Текст" id="role">
+        </div>
+        <div class="blockButton" onclick="add()"><p>Сохранить</p></div>
+    </div>
+
 </div>
 <script src="scripts.js"></script>
 </body>
