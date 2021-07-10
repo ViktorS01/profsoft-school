@@ -15,7 +15,6 @@ async function fillData() {
 
                 document.querySelector(".mainPage").innerHTML +=
                         `<div class="wrapperPost" id="post_${id}">
-                            <p class="openModalButton" id="openModalButton">+ Добавить новый пост</p>
                             <div class="mainPage_post">
                                 <img class="userImg" src="assets/user.svg" alt="User">
                                 <div class="post-content">
@@ -78,7 +77,7 @@ const checkCommentPost = async (idUser) => {
             data.forEach(post => {
                 const {postId, id, name, email, body} = post;
 
-                document.querySelector(`#${idUser}`).children[2].innerHTML +=
+                document.querySelector(`#${idUser}`).children[1].innerHTML +=
                     `<div class="commentsPost">
                         <img src="assets/user.svg" alt="User">
                         <div class="comment-content">
