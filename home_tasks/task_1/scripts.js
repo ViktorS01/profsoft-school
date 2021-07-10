@@ -1,4 +1,7 @@
 async function getDataPost() {
+    const mainPage = document.querySelector('.mainPage');
+    mainPage.innerHTML = '';
+
     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
     if (response.ok) {
         return response.json();
@@ -46,10 +49,19 @@ const addEventListeners = () => {
 
     document.querySelectorAll(".closeButton").forEach(elem => {
         elem.addEventListener("click", event => {
-            deletePost(event.target.parentNode.parentNode.parentNode.id);
+            deletePost(event.target.parentNode.parentNode.parentNode.parentNode.id);
         })
     })
 
+    document.querySelectorAll(".openModalButton").forEach(elem => {
+        elem.addEventListener("click", () => {
+            document.getElementById('myModal').style.display = 'block';
+        })
+    })
+
+    document.querySelector('.close').addEventListener('click', () => {
+        closeModal()
+    })
 }
 
 const checkInfoPost = async (event) => {
@@ -77,17 +89,42 @@ const checkCommentPost = async (idUser) => {
             })
         })
 
-        await fillData();
     }
 }
 
 const deletePost = async (idPost) => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${idPost}`, {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${idPost.split("_"[1])}`, {
         method: "DELETE"
     })
     if (response.ok) {
-        await fillData()
+        await fillData();
     }
+}
+
+async function add(){
+    const data = {
+        idUser: document.getElementById('idUser').value,
+        title: document.getElementById('title').value,
+        body: document.getElementById('body').value
+    }
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        }
+    })
+    if (response.ok){
+        closeModal();
+        fillData();
+    }
+}
+
+const closeModal = () => {
+    document.getElementById('myModal').style.display = 'none'
+    document.getElementById('idUser').value = ''
+    document.getElementById('title').value = ''
+    document.getElementById('body').value = ''
 }
 
 fillData();
