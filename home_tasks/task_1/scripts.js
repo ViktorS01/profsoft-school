@@ -103,28 +103,28 @@ const deletePost = async (idPost) => {
 
 async function add(){
     const data = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        role: document.getElementById('role').value
+        idUser: document.getElementById('idUser').value,
+        title: document.getElementById('title').value,
+        body: document.getElementById('body').value
     }
     const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-type': 'application/json; charset=UTF-8',
         }
     })
     if (response.ok){
-        closeModal()
-        fillData()
+        closeModal();
+        fillData();
     }
 }
 
 const closeModal = () => {
     document.getElementById('myModal').style.display = 'none'
-    document.getElementById('email').value = ''
-    document.getElementById('name').value = ''
-    document.getElementById('role').value = ''
+    document.getElementById('idUser').value = ''
+    document.getElementById('title').value = ''
+    document.getElementById('body').value = ''
 }
 
 fillData();
